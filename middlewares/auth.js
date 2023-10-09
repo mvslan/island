@@ -16,20 +16,39 @@ class Auth {
       }
       let errMsg = "token不合法";
       let decode;
+
       try {
         decode = jwt.verify(userToken.name, global.config.security.secretKey);
       } catch (err) {
-        if (error.name == "TokenExpiredError") {
+        if (err.name == "TokenExpiredError") {
           errMsg = "token已过期";
         }
+        console.log(2, errMsg, decode)
+
         throw new global.errs.AuthForbiddenException(errMsg);
       }
-      console.log(5, decode.scope);
+      if (decode.scope < this.level) {
+        errMsg = '权限不足，你的战斗力还不够哦'
+        throw new global.errs.AuthForbiddenException(errMsg)
+      }
       ctx.auth = {
         uid: decode.uid,
         scope: decode.scope,
       };
+      await next()
     };
+  }
+
+  static async verifyToken(token) {
+    try {
+      jwt.verify(token, global.config.security.secretKey)
+      return true
+
+    } catch (err) {
+      console.log(err)
+      return false
+    }
+
   }
 }
 

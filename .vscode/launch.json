@@ -4,28 +4,19 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-
-  
     {
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "name": "nodemon",
+      "name": "nodemon debugger",
       "program": "${workspaceFolder}/app.js",
+      // "runtimeArgs": ["${workspaceFolder}/app.js"],
       "request": "launch",
       "restart": true,
-      "runtimeExecutable": "nodemon",
+      "runtimeExecutable": "node",
       "skipFiles": [
         "<node_internals>/**"
       ],
       "type": "node"
     },
-    
-    
-    {
-      "type": "nodemon",
-      "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "program": "${workspaceFolder}/app.js"
-    }
   ]
 }

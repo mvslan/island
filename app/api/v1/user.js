@@ -9,6 +9,8 @@ const router = new Router({
 });
 
 router.post("/register", async (ctx) => {
+
+  console.log('---', ctx)
   const v = await new RegisterValidator().validate(ctx);
   const salt = bcrypt.genSaltSync(1);
   const psw = bcrypt.hashSync(v.get("body.password1"), salt);

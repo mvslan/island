@@ -43,10 +43,40 @@ class AuthForbiddenException extends ApiException {
   }
 }
 
+class AuthFailed extends ApiException {
+  constructor(msg, errorCode) {
+    super()
+    this.msg = msg || '授权失败'
+    this.errorCode = errorCode || 10004
+    this.code = 401
+  }
+}
+
+class LikeError extends ApiException {
+  constructor(msg, error_code) {
+    super()
+    this.code = 400
+    this.msg = "你已经点赞过"
+    this.error_code = 60001
+  }
+}
+
+class DislikeError extends ApiException {
+  constructor(msg, error_code) {
+    super()
+    this.code = 400
+    this.msg = "你已取消点赞"
+    this.error_code = 60002
+  }
+}
+
 module.exports = {
   ApiException,
   ParameterException,
   NotFundException,
   AuthFailedException,
   AuthForbiddenException,
+  AuthFailed,
+  LikeError,
+  DislikeError
 };

@@ -12,7 +12,7 @@ const errCatch = async (ctx, next) => {
     }
 
     if (isHttpException) {
-      console.log(2, err);
+      console.log(233, err);
       ctx.body = {
         msg: err.msg,
         errorCode: err.errorCode,
