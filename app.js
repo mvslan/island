@@ -9,7 +9,7 @@ const errCatch = require("./middlewares/exception");
 require("./app/models/user");
 require("./app/models/classic");
 
-
+console.log(1)
 app.use(errCatch);
 app.use(bodyParser());
 
